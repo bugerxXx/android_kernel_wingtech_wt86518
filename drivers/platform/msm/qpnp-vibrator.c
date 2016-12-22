@@ -75,7 +75,7 @@ struct qpnp_vib {
 	spinlock_t lock;
 };
 
-static struct qpnp_vib *gvib;
+//static struct qpnp_vib *gvib;
 
 static int qpnp_vib_read_u8(struct qpnp_vib *vib, u8 *data, u16 reg)
 {
@@ -306,12 +306,14 @@ retry:
 	spin_unlock_irqrestore(&vib->lock, flags);
 }
 
+/*
 #ifdef CONFIG_TOUCHSCREEN_PREVENT_SLEEP
 void set_vibrate(int value)
 {
 	qpnp_vib_enable(&gvib->timed_dev, value);
 }
 #endif
+*/
 
 static int qpnp_vib_get_time(struct timed_output_dev *dev)
 {
@@ -504,7 +506,7 @@ static int qpnp_vibrator_probe(struct spmi_device *spmi)
 
 	dev_set_drvdata(&spmi->dev, vib);
 
-	gvib = vib;
+	//gvib = vib;
 
 	rc = timed_output_dev_register(&vib->timed_dev);
 	if (rc < 0)
